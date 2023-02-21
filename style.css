@@ -1,0 +1,366 @@
+/* FORMATAÇÕES GERAIS */
+
+body, p, h1, ul, li, blockquote {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Vollkorn, Georgia, sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+/* GRID GERAL */
+
+.estrutura {
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) 3fr 300px;
+    grid-template-areas:
+        "header header header"
+        "side-nav content anuncios"
+        "footer footer footer"
+    ;
+}
+
+@media (max-width: 1200px) {
+    .estrutura {
+        grid-template-columns: minmax(160px, 1fr) 3fr;
+        grid-template-areas: 
+        "header header"
+        "side-nav content"
+        "side-nav anuncios"
+        "footer footer"
+        ;
+    }
+}
+@media (max-width: 700px) {
+    .estrutura {
+        grid-template-columns: 100%;
+        grid-template-areas:
+        "header"     
+        "side-nav"     
+        "content"
+        "anuncios"     
+        "footer"     
+        ;
+    }
+}
+
+/* Cabeçalho/Topo do Site */
+
+.header {
+    grid-area: header;
+    display: grid;
+    background: linear-gradient(135deg,#8844EE, #B07DFB);
+    padding: 30px;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+
+.logo {
+    max-width: 200px;
+}
+
+.header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header nav a {
+    display: block;
+    padding: 10px;
+    background: rgba(0, 0, 0, .1);
+    color: #FAFBFC;
+    font-size: 1.125em;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.header nav a:hover {
+    background: rgba(0, 0, 0, .5);
+}
+
+.header li + li {
+    margin-left: 30px;
+}
+
+@media (max-width: 700px) {
+    .header {
+        grid-template-columns: auto;
+    }
+    .logo {
+        margin-bottom: 20px;
+    }
+    .header nav a {
+        font-size: 1em;
+    }
+    .header li + li {
+        margin-left: 10px;
+    }
+}
+
+
+/* Barra Lateral */
+
+.side-nav {
+    grid-area: side-nav;
+    background: #FAFBFC;
+    padding: 30px;
+}
+
+.side-nav li a {
+    display: block;
+    min-width: 60px;
+    max-width: 100px;
+    background: #FAFBFC;
+    margin: 0 auto 30px auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(44, 44, 44, 0.15);
+    transition: 0.5s ease-out;
+}
+
+.side-nav li a:hover {
+    background: #B07DFB;
+}
+
+
+@media (max-width: 700px) {
+    .side-nav {
+        padding: 0px 30px;
+        overflow-x: auto;
+        /* -webkit-overflow-scrolling: touch; */
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        position: relative;
+    }
+    .side-nav::after {
+        content: "🠆";
+        position: absolute;
+        top: 5px;
+        right: 30px;
+        color: rgba(0, 0, 0, .3);
+        animation: seta .5s ease-in 0s infinite alternate;
+    }
+    .side-nav ul {
+        display: flex;
+    }
+    .side-nav li {
+        flex: 1 0 60px;
+    }
+    .side-nav li a {
+        margin: 30px 30px 30px 0;
+    }
+
+    @keyframes seta {
+        from {
+            right: 20px;
+        }
+        to {
+            right: 30px;
+        }
+    }
+}
+
+
+/* Conteúdo Principal (Centro) */
+
+.content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+    padding: 30px;
+    gap: 30px;
+    max-width: 900px;
+}
+
+@media (max-width: 600px) {
+    .content {
+        grid-template-columns: auto;
+    }
+
+    .content .destaque {
+        max-width: max-content;
+    }
+}
+
+.column-wide {
+    grid-column: 1 / -1;
+}
+
+.imagem-1-de-2-linhas {
+    grid-row: span 2;
+    align-self: end;
+}
+
+.imagem-2 {
+    align-self: end;
+}
+
+/* Estilos do Content */
+
+p {
+    color: rgba(0, 0, 0, .7);
+    font-size: 1.2em;
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+}
+
+.informacoes p + p {
+    margin-top: 30px;
+}
+
+
+/* Título Principal */
+
+.titulo {
+    color: #B07DFB;
+}
+
+.titulo h1 {
+    font-size: 3.75em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.titulo span {
+    font-size: 1em;
+    font-style: italic;
+}
+
+
+/* Características do Topo */
+
+.caracteristicas {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.caracteristicas > div {
+    background: linear-gradient(135deg,#8844EE, #B07DFB);
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(44, 44, 44, 0.3);
+    text-align: center;
+    width: 80px;
+
+    position: relative;
+}
+
+.caracteristicas > div:first-child {
+    margin-right: 30px;
+}
+
+.caracteristicas span {
+    display: block;
+}
+
+.numero {
+    color: #FAFBFC;
+    font-size: 3em;
+    line-height: 1;
+    margin: 10px auto;
+}
+
+.rotulo {
+    background: #FAFBFC;
+    color: #B07DFB;
+    font-weight: 700;
+    border-radius: 0 0 5px 5px;
+    padding: 5px 0;
+
+    position: relative;
+    top: 2px;
+}
+
+.destaque {
+    color: #b07dfb;
+    font-size: 0.875em;
+    max-width: 16em;
+}
+
+.citacao, .atributos {
+    background: linear-gradient(135deg,#8844EE, #B07DFB);
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.3);
+    padding: 30px;
+    align-self: start;
+}
+
+.citacao p {
+    color: #FAFBFC;
+    font-size: 1.5em;
+    font-style: italic;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.atributos li {
+    color: #FAFBFC;
+    font-family: Courier, monospace;
+    font-size: 1.125em;
+    padding: 15px;
+}
+
+.atributos li + li {
+    border-top: 2px solid #B07DFB;
+}
+
+
+/* Anúncios da Lateral Direita */
+
+.anuncios {
+    grid-area: anuncios;
+    display: grid;
+    background: #FAFBFC;
+    align-content: start;
+    padding: 30px;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+@media (max-width: 600px) {
+    .anuncios {
+        grid-template-columns: auto;
+    }
+    .anuncio-item img {
+        /* justify-self: center; */
+        margin: 0 auto;
+        max-width: 300px;
+    }
+}
+
+.anuncios h1 {
+    color: #B07DFB;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+/* Rodapé (Final) */
+
+.footer {
+    grid-area: footer;
+    background: linear-gradient(135deg,#8844EE, #B07DFB);
+}
+
+.footer p {
+    color: #FAFBFC;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 30px;
+}
